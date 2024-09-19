@@ -14,7 +14,7 @@
     $myName3 = 'Junior'; //global var
     $myAge = 20;   // global var
     $myCity = 'Ibadan';  // global var
-
+    
     echo "there is a man called $myName";
     echo '<br>';
     echo "<br>";
@@ -28,7 +28,7 @@
     // ways of calling a global var into a function
     function myName()
     {
-        global  $myName2; // 1st way
+        global $myName2; // 1st way
         echo "my name is $myName2";
     }
     myName();
@@ -37,8 +37,7 @@
     echo "<br>";
 
 
-    function myName2()
-    {
+    function myName2(){
         echo 'my name is' . $GLOBALS['myName3'];  // 2nd way
     }
     myName2();
@@ -46,8 +45,7 @@
     echo "<br>";
     echo "<br>";
 
-    function handleIncrease()
-    {
+    function handleIncrease(){
         static $num = 1; //static and local variable
         $num++;
     }
@@ -113,7 +111,7 @@
     define("name", "Cyprian Obi");
     define("greeting", "welcome to class");
     const age = 9; // the const can take different data types as its value
-
+    
     echo name;
     echo "<br>";
     echo age;
@@ -131,16 +129,16 @@
     echo "<br>";
 
 
-    function myFunction()
-    {
+    function myFunction(){
         echo __FUNCTION__;
-    };
+    }
+    ;
     echo "<br>";
     echo "<br>";
 
 
     // comparison operator
-
+    
     // == Equal
     // === Identical
     // != not equal
@@ -151,43 +149,41 @@
     // >= greater than or equal
     // ++ increment by one
     // -- decrement by one
-
+    
 
     // Logical Operators
     // || or
     // && and
-
+    
 
     // Contitional Assignment
     // ? :
     // ?? null safety
     const num1 = 1;
     const num2 = 2;
-    const  myAge = 18;
+    const myAge = 18;
     const myGender = "male";
 
-    function validateNumber()
-    {
+    function validateNumber(){
         if (num1 == num2) {
             echo num1 . "and" . num2 . "are the same";
         } else {
             echo "not the same";
-        };
+        }
+        ;
     }
     validateNumber();
     echo "<hr>";
 
     //11-09-24
-    function greetTheWorld($name)
-    {
+    function greetTheWorld($name){
         echo "<br>";
         echo "hello $name";
     }
     greetTheWorld(name: "John Doe");
     echo "<br>";
 
-    function getGrade($grade)
-    {
+    function getGrade($grade){
         switch ($grade) {
             case "A";
                 return "You are very good";
@@ -213,7 +209,7 @@
     echo "<hr>";
 
     // 13-09-24
-
+    
     // For loop
     for ($index = 0; $index < 10; $index++) {
         sayHi(index: $index);
@@ -258,7 +254,7 @@
     echo "<br>";
     echo "<br>";
     // map array
-
+    
     $me = [
         "name" => "Ademola",   // this is an associative array
         "gender" => "male"
@@ -292,24 +288,27 @@
         echo $key . ":" . $value . "<br>";
     }
 
+    echo "<br>";
+    echo "<br>";
+
     //class-work 1
     $newArray = ["boy", "girl", "trans"];
-    function checkArray(array $myArray, $positionInArray)
-    {
-        for ($w = 0; $w < count(value: $myArray); $w++) {
-            if (!$positionInArray === $myArray[$w]) {
-                return "$positionInArray is missing in data";
-            }
+
+    function checkArray(array $myArray, $positionInArray){
+    for ($w = 0; $w < count($myArray); $w++) {
+        if ($positionInArray == $myArray[$w]) {
             return "The index of $positionInArray is $w and the value is $positionInArray";
         }
     }
+    return "$positionInArray is missing in data";
+}
 
-    echo checkArray($newArray, "trans");
-    echo "<br>";
-    echo "<br>";
-    echo checkArray($newArray, "woman");
-    echo "<br>";
-    echo "<br>";
+echo checkArray($newArray, "trans");
+echo "<br>";
+echo checkArray($newArray, "woman");
+echo "<br>";
+echo "<br>";
+
 
     //class-work 2
     $num = [4, 9, 8, 7, 3, 9];
@@ -327,31 +326,70 @@
     echo "<br>";
     echo "<hr>";
 
-    //class-work 3
-    function checkVotingEligibility ($age, $nationality, $years_in_nigeria){
-        if($age < 18 && $nationality == "nigeria"){
-           return "You're not eligible to vote!";
-        }
-        if($age >= 18 && $nationality == "nigeria"){
+    /*class-work 3
+    Voting Eligibility Function:
+   - Create a function named checkVotingEligibility that takes three parameters: age, nationality, and years_in_nigeria.
+   - Use if statements within this function to determine if the user is eligible to vote based on the following criteria:
+   - Users from Nigeria must be 18 years old or older to be eligible to vote.
+   - Users from other countries must be 25 years old or older and must have lived in Nigeria for at least 5 years to be eligible to vote.*/
+
+    function checkVotingEligibility($age, $nationality, $years_in_nigeria){
+        if ($age < 18 && $nationality == "nigeria") {
             return "You're not eligible to vote!";
         }
-        if($nationality !== "nigeria" && $years_in_nigeria >= 5 && $age >= 25){
+        if ($age >= 18 && $nationality == "nigeria") {
+            return "You're not eligible to vote!";
+        }
+        if ($nationality !== "nigeria" && $years_in_nigeria >= 5 && $age >= 25) {
             return "You're eligible to vote!";
-        }else{
+        } else {
             return "You're not eligible to vote!";
         }
     }
 
     echo "<br>", checkVotingEligibility(22, "", "7");
+    echo "<br>";
 
     //class-work 4
-    function checkLibraryAccess ($level, $surname, $first_name, $is_exco){
-        $levelArray = [100,200,300,400];
-        for ($i = 0; $i < count($levelArray); $i++){
-            if()
+    /*Library Access Function:
+   - Create a function named checkLibraryAccess that takes four parameters: level, surname, first_name, and is_exco.
+   - Use if statements within this function to determine if the student is eligible to access the library based on the following criteria:
+   - Students in levels 100 to 300 can access the library without restriction, unless their surname contains "bad".
+   - Students in level 400 are not allowed access unless they are an exco member.
+   - Any student whose first name is "Grace" is allowed access even if they are in level 400 and not an exco member.*/
 
-        }
+   function checkLibraryAccess($level, $surname, $first_name, $is_exco) {
+    $levelArray = [100, 200, 300, 400];
+    
+    if (!in_array($level, $levelArray)) {
+        return "You're not a student";
     }
+    
+    if ($level == 100 || $level == 200 || $level == 300) {
+        if ($surname == "bad") {
+            return "You're not eligible to access the library";
+        }
+        return "You're eligible to access the library";
+    }
+    
+    if ($level == 400) {
+        if ($is_exco) {
+            return "You're eligible to access the library";
+        }
+        return "You're not eligible to access the library";
+    }
+    
+    if ($first_name == "grace") {
+        return "You're eligible to access the library";
+    }
+    
+    return "You're not eligible to access the library";
+}
+
+echo "<br>", checkLibraryAccess(200, "bad", "great", true);
+echo "<br>", checkLibraryAccess(500, "adam", "grace", false);
+
+
 
 
     ?>
