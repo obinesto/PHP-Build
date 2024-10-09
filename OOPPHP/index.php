@@ -78,3 +78,73 @@ echo "<br>";
 $newparam = new isHuman("Bola", "female", 19);
 echo "<br>", $newparam->handleVoteEligibility();
 echo "<br>";
+
+//27-09-2024
+
+class GodsImage2{ 
+    public function hasPower(){
+        echo "<br>". "You have power";
+    }
+
+    public function hasSpirit(){
+        echo "<br>"."You have spirit";
+    }
+}
+
+class Human extends GodsImage2 {
+    public $name;
+    private $age;
+    protected $gender;
+
+    public function __construct($Isname, $Isage, $Isgender) {
+        $this->name = $Isname;
+        $this->age = $Isage;
+        $this->gender = $Isgender;
+    }
+
+    public function hasPower() {
+        echo "<br>" . "Not using power";
+    }
+
+    public function canVote() {
+        if ($this->getAge() >= 18) {
+            echo "<br>" . "You can vote";
+        } else {
+            echo "<br>" . "You cannot vote";
+        }
+    }
+
+    public function reProduce() {
+        echo "<br>" . "I can reproduce";
+    }
+
+    private function getAge() {
+        return $this->age;
+    }
+}
+
+$human = new Human("John", 20, "male");
+$human->canVote(); // Outputs: You can vote
+
+$youngHuman = new Human("Jane", 16, "female");
+$youngHuman->canVote(); // Outputs: You cannot vote
+
+
+//abstract classes can not be initialized. we use them to unite our classes
+//we use 'extends' for abstract and 'implements' for interface
+//normal classes are mandated to take all properties of interface based classes and also complete all uncompleted functions
+//for abstract classes, normal classes can choose the properties/functions they want to import from abstract classes
+
+abstract class WasteProduct{
+    public function dispose(){
+        echo "<br>"."This class disposes waste product";
+    }
+}
+
+
+class Human2 extends WasteProduct{
+    public $name;
+    private $age;
+    protected $gender;
+
+}
